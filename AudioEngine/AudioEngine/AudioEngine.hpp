@@ -17,6 +17,8 @@
 #include <math.h>
 #include <iostream>
 
+using namespace std;
+
 struct Vector3 {
     float x;
     float y;
@@ -33,6 +35,16 @@ struct Implementation {
     FMOD::System* mpSystem;
     
     int mnNextChannelID;
+    
+    typedef map<string, FMOD::Sound*> SoundMap;
+    typedef map<int, FMOD::Channel*> ChannelMap;
+    typedef map<string, FMOD::Studio::EventInstance*> EventMap;
+    typedef map<string, FMOD::Studio::Bank*> BankMap;
+    
+    BankMap mBanks;
+    EventMap mEvents;
+    SoundMap mSounds;
+    ChannelMap mChannels;
 };
 
 #endif /* AudioEngine_hpp */

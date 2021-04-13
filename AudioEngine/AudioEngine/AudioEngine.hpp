@@ -19,13 +19,15 @@
 
 using namespace std;
 
-struct Vector3 {
+struct Vector3
+{
     float x;
     float y;
     float z;
 };
 
-struct Implementation {
+struct Implementation
+{
     Implementation();
     ~Implementation();
     
@@ -47,7 +49,8 @@ struct Implementation {
     ChannelMap mChannels;
 };
 
-class CAudioEngine {
+class CAudioEngine
+{
 public:
     static void Init();
     static void Update();
@@ -59,7 +62,7 @@ public:
     void LoadSound(const string& strSoundName, bool b3d = true, bool bLooping = false, bool bStream = false);
     void UnLoadSound(const string& strSoundName);
     void Set3dListenerAndOrientation(const Vector3& vPos = Vector3{0, 0, 0}, float fVolumedB = 0.0f);
-    void PlaySound(const string$ strSoundName, const vector3& vPos = Vector3{0, 0, 0})
+    void PlaySound(const string& strSoundName, const Vector3& vPos = Vector3{0, 0, 0});
     void PlayEvent(const string& strEventName);
     void StopChannel(int nChannelId);
     void StopEvent(const string& strEventName, bool bImmediate = false);
@@ -70,7 +73,7 @@ public:
     bool IsEventPlaying(const string& strEventName) const;
     float dbToVolume(float db);
     float VolumeTodb(float volume);
-    FMOD_VECTOR VectorToFmod(const Vector& vPosition);
+    FMOD_VECTOR VectorToFmod(const Vector3& vPosition);
 };
 
 #endif /* AudioEngine_hpp */

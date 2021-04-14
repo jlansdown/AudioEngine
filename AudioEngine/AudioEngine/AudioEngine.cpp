@@ -120,6 +120,19 @@ int CAudioEngine::PlaySounds(const string &strSoundName, const Vector3& vPositio
     return nChannelId;
 }
 
+/*bool CAudioEngine::isPlaying(int nChannelId) const {
+    FMOD::Channel *pChannel = nullptr;
+    pChannel = sgpImplementation->mChannels[nChannelId];
+    
+    bool bIsPlaying = false;
+    nChannel->second->isPlaying(&bIsPlaying);
+    if (pChannel->isPlaying(&isPlaying))
+        return true;
+    
+    return false;
+    
+}*/
+
 void CAudioEngine::SetChannel3dPosition(int nChannelId, const Vector3 &vPosition)
 {
     auto tFoundIt = sgpImplementation->mChannels.find(nChannelId);

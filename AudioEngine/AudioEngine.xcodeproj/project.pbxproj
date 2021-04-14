@@ -36,6 +36,7 @@
 		1A177EF0261FBC6900E52EC7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1A6DDB4C26221D1800ACD546 /* AudioEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AudioEngine.cpp; sourceTree = "<group>"; };
 		1A6DDB4D26221D1800ACD546 /* AudioEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AudioEngine.hpp; sourceTree = "<group>"; };
+		1A7C56172627720100D21F91 /* sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sound.wav; sourceTree = "<group>"; };
 		1A89D4D626211CB4007E4E31 /* libfmodL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodL.dylib; path = Libraries/libfmodL.dylib; sourceTree = "<group>"; };
 		1A89D4D726211CB4007E4E31 /* libfmodstudioL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodstudioL.dylib; path = Libraries/libfmodstudioL.dylib; sourceTree = "<group>"; };
 		1A89D4D826211CB4007E4E31 /* libfmodstudio.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodstudio.dylib; path = Libraries/libfmodstudio.dylib; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		1A177EEF261FBC6900E52EC7 /* AudioEngine */ = {
 			isa = PBXGroup;
 			children = (
+				1A7C56172627720100D21F91 /* sound.wav */,
 				1A177EF0261FBC6900E52EC7 /* main.cpp */,
 				1A6DDB4C26221D1800ACD546 /* AudioEngine.cpp */,
 				1A6DDB4D26221D1800ACD546 /* AudioEngine.hpp */,

@@ -67,7 +67,7 @@ public:
     void StopChannel(int nChannelId);
     void StopEvent(const string& strEventName, bool bImmediate = false);
     void GetEventParameter(const string& strEventName, const string& strEventParameter, float* parameter);
-    void SetEventParameter(const string& strEventName, const string& strParameter, float fValue);
+    void SetEventParameter(const string& strEventName, const string& strParameterName, float fValue);
     void StopAllChannels();
     void SetChannel3dPosition(int nChannelId, const Vector3 &vPosition);
     void SetChannelVolume(int nChannelId, float fVolumedB);

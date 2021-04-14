@@ -78,3 +78,44 @@ void CAudioEngine::LoadSound(const std::string& strSoundName, bool b3d, bool bLo
     }
     
 }
+
+void CAudioEngine::UnLoadSound(const string &strSoundName)
+{
+    auto tFoundIt = sgpImplementation->mSounds.find(strSoundName);
+    if (tFoundIt == sgpImplementation->mSounds.end())
+        return;
+    
+    CAudioEngine::ErrorCheck(tFoundIt->second->release());
+    sgpImplementation->mSounds.erase(tFoundIt);
+}
+
+int CAudioEngine::PlaySounds(const string &strSoundName, const Vector3& vPosition, float fVolumedB)
+{
+    int nChannelId = sgpImplementation->mnNextChannelID++;
+    auto tFoundIt = sgpImplementation->mSounds.find(strSoundName);
+    if (tFoundIt == sgpImplementation->mSounds.end())
+    {
+        LoadSound(strSoundName);
+        tFoundIt = sgpImplementation->mSounds.find(strSoundName);
+        if (tFoundIt == sgpImplementation->mSounds.end())
+        {
+            return nChannelId;
+        }
+    }
+    FMOD::Channel* pChannel = nullptr;
+    CAudioEngine::ErrorCheck(sgpImplementation->mpSystem->playSound(tFoundIt->second, nullptr, true, &pChannel));
+    if (pChannel)
+    {
+        FMOD_MODE currMode;
+        tFoundIt->second->getMode(&currMode);
+        if (currMode &FMOD_3D)
+        {
+            FMOD_VECTOR position = VectorToFmod(vPosition);
+            CAudioEngine::ErrorCheck(pChannel->set3DAttributes(&position, nullptr));
+        }
+        CAudioEngine::ErrorCheck(pChannel->setVolume((dbToVolume(fVolumedB))));
+        CAudioEngine::ErrorCheck(pChannel->setPaused(false));
+        sgpImplementation->mChannels[nChannelId] = pChannel;
+    }
+    return nChannelId;
+}

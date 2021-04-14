@@ -119,3 +119,37 @@ int CAudioEngine::PlaySounds(const string &strSoundName, const Vector3& vPositio
     }
     return nChannelId;
 }
+
+void CAudioEngine::SetChannel3dPosition(int nChannelId, const Vector3 &vPosition)
+{
+    auto tFoundIt = sgpImplementation->mChannels.find(nChannelId);
+    if (tFoundIt == sgpImplementation->mChannels.end())
+        return;
+    
+    FMOD_VECTOR position = VectorToFmod(vPosition);
+    CAudioEngine::ErrorCheck(tFoundIt->second->set3DAttributes(&position, NULL));
+}
+
+void CAudioEngine::SetChannelVolume(int nChannelId, float fVolumedB)
+{
+    auto tFoundIt = sgpImplementation->mChannels.find(nChannelId);
+    if (tFoundIt == sgpImplementation->mChannels.end())
+        return;
+    
+    CAudioEngine::ErrorCheck(tFoundIt->second->setVolume(dbToVolume(fVolumedB)));
+}
+
+void CAudioEngine::LoadBank(const string &strBankName, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
+{
+    auto tFoundIt = sgpImplementation->mBanks.find(strBankName);
+    if (tFoundIt == sgpImplementation->mBanks.end())
+        return;
+    
+    FMOD::Studio::Bank* pBank;
+    CAudioEngine::ErrorCheck(sgpImplementation->mpStudioSystem->loadBankFile(strBankName.c_str(), flags, &pBank));
+    if (pBank)
+    {
+        sgpImplementation->mBanks[strBankName] = pBank;
+    }
+}
+

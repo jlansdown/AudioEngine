@@ -23,8 +23,7 @@ int main(int argc, const char * argv[])
     
     int test = engine.PlaySounds("/Users/james/Desktop/AudioEngine/AudioEngine/AudioEngine/sound.wav", {1,1,1}, 1.005f);
     
-    int n = 1;
-    while (n) {
+    while (engine.isPlaying(test)) {
         engine.Update();
     }
     

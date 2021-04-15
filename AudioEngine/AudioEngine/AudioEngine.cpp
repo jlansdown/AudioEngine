@@ -120,18 +120,20 @@ int CAudioEngine::PlaySounds(const string &strSoundName, const Vector3& vPositio
     return nChannelId;
 }
 
-/*bool CAudioEngine::isPlaying(int nChannelId) const {
-    FMOD::Channel *pChannel = nullptr;
-    pChannel = sgpImplementation->mChannels[nChannelId];
+bool CAudioEngine::isPlaying(int nChannelId) const {
+    auto tFoundIt = sgpImplementation->mChannels.find(nChannelId);
+    if (tFoundIt == sgpImplementation->mChannels.end())
+        return false;
     
-    bool bIsPlaying = false;
-    nChannel->second->isPlaying(&bIsPlaying);
-    if (pChannel->isPlaying(&isPlaying))
+    //Casting FMOD_RESULT as FMOD_STUDIO_PLAYBACK_STATE
+    bool isPlaying = true;
+    if ((FMOD_STUDIO_PLAYBACK_STATE)tFoundIt->second->isPlaying(&isPlaying) == FMOD_STUDIO_PLAYBACK_PLAYING)
+    {
         return true;
-    
+    }
     return false;
     
-}*/
+}
 
 void CAudioEngine::SetChannel3dPosition(int nChannelId, const Vector3 &vPosition)
 {
